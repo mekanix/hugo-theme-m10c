@@ -7,7 +7,7 @@
     {{ hugo.Generator }}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="{{ .Site.Params.author | default "John Doe" }}" />
-    <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
+    <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Title }}{{ end }}" />
     {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | resources.ToCSS | resources.Minify | resources.Fingerprint -}}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
     {{ with .OutputFormats.Get "rss" -}}
@@ -37,7 +37,7 @@
       {{- with .Site.Params.social }}
       <div class="app-header-social">
         {{ range . }}
-          <a href="{{ .url }}" target="_blank" rel="noreferrer noopener me">
+          <a href="{{ .url }}" target="_blank" rel="noreferrer noopener me" alt="{{ .name }}" aria-label="{{ .name }}">
             {{ partial "icon.html" (dict "ctx" $ "name" .icon "title" .name) }}
           </a>
         {{ end }}
