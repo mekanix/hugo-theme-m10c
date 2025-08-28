@@ -17,6 +17,11 @@ h1, h2, h3, h4, h5, h6 {
   color: $lightest-color;
 }
 
+h1 {
+  margin-block: 0.67em;
+  font-size: 2em;
+}
+
 a {
   color: $primary-color;
   transition: color 0.35s;
